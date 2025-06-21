@@ -1,0 +1,37 @@
+# netlify.toml - Corrected based on working example
+
+# Build settings for your Vite site
+[build]
+  command = "npm run build"
+  publish = "dist"
+  # Set the functions directory
+  functions = "netlify/functions"
+
+# Environment settings for the build
+[build.environment]
+  NODE_VERSION = "18"
+
+# Configuration for how functions are bundled
+[functions]
+  node_bundler = "esbuild"
+
+# Settings for the local development server (netlify dev)
+[dev]
+  command = "npm run dev"
+  port = 8888
+  targetPort = 5174
+  publish = "dist"
+  framework = "vite"
+
+# Redirects API requests to the standard function
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Redirect for Single Page Applications (like React)
+# This makes sure direct navigation to routes like /contact works
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200 
