@@ -1,4 +1,125 @@
-const { Resend } = require('resend');
+import fetch from 'node-fetch';
+
+export const handler = async (event, context) => {
+  // Handle CORS
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+  };
+
+  // Handle preflight requests
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers,
+      body: ''
+    };
+  }
+
+  // Test endpoint
+  if (event.httpMethod === 'GET') {
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({ 
+        message: 'Email function is working!',
+        timestamp: new Date().toISOString(),
+        environment: process.env.NODE_ENV || 'development'
+      })
+    };
+  }
+
+  try {
+    const { from, to, subject, formData, emailType } = JSON.parse(event.body);
+
+    console.log('Received email request:', { emailType, formData });
+    console.log('Environment variables:', {
+      hasApiKey: !!process.env.RESEND_API_KEY,
+      nodeEnv: process.env.NODE_ENV
+    });
+
+    // Get API key from environment variable
+    const apiKey = process.env.RESEND_API_KEY || 're_7Mtajhbe_AtdHr3bTYHbwGAz6ey91Xt9w';
+    console.log('Using API key:', apiKey ? 'Present' : 'Missing');
+
+    if (!apiKey) {
+      throw new Error('RESEND_API_KEY environment variable is not set');
+    }
+
+    // Create email HTML based on type
+    let emailHtml;
+    if (emailType === 'service-request' && formData) {
+      emailHtml = createServiceRequestEmail(formData);
+    } else if (emailType === 'job-application' && formData) {
+      emailHtml = createJobApplicationEmail(formData);
+    } else {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ 
+          error: 'Invalid email type or missing form data',
+          received: { emailType, hasFormData: !!formData }
+        })
+      };
+    }
+
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: from || 'onboarding@resend.dev',
+        to: to,
+        subject: subject,
+        html: emailHtml,
+      }),
+    });
+
+    console.log('Resend API response status:', response.status);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Resend API Error:', errorText);
+      return {
+        statusCode: response.status,
+        headers,
+        body: JSON.stringify({ 
+          error: 'Failed to send email', 
+          details: errorText,
+          status: response.status
+        })
+      };
+    }
+
+    const result = await response.json();
+    console.log('Email sent successfully:', result);
+
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({ 
+        success: true, 
+        message: 'Email sent successfully',
+        id: result.id 
+      })
+    };
+
+  } catch (error) {
+    console.error('Server error:', error);
+    return {
+      statusCode: 500,
+      headers,
+      body: JSON.stringify({ 
+        error: 'Internal server error', 
+        message: error.message,
+        stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+      })
+    };
+  }
+};
 
 // Email templates
 const createServiceRequestEmail = (formData) => `
@@ -133,77 +254,4 @@ const createJobApplicationEmail = (formData) => `
     </div>
 </body>
 </html>
-`;
-
-
-exports.handler = async (event) => {
-    // Standard headers for CORS
-    const headers = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    };
-
-    // Handle preflight requests for CORS
-    if (event.httpMethod === 'OPTIONS') {
-        return {
-            statusCode: 200,
-            headers,
-            body: JSON.stringify({ message: 'OPTIONS request successful' }),
-        };
-    }
-
-    // Ensure it's a POST request
-    if (event.httpMethod !== 'POST') {
-        return {
-            statusCode: 405,
-            headers,
-            body: JSON.stringify({ error: 'Method Not Allowed' }),
-        };
-    }
-
-    // Initialize Resend with API key from environment variables
-    const resend = new Resend(process.env.RESEND_API_KEY);
-
-    try {
-        const { from, to, subject, formData, emailType } = JSON.parse(event.body);
-
-        let emailHtml;
-        if (emailType === 'service-request' && formData) {
-          emailHtml = createServiceRequestEmail(formData);
-        } else if (emailType === 'job-application' && formData) {
-          emailHtml = createJobApplicationEmail(formData);
-        } else {
-            return {
-                statusCode: 400,
-                headers,
-                body: JSON.stringify({ error: 'Invalid email type or missing form data' }),
-            };
-        }
-    
-        const { data, error } = await resend.emails.send({
-          from: from || 'onboarding@resend.dev',
-          to,
-          subject,
-          html: emailHtml,
-        });
-    
-        if (error) {
-            throw new Error(error.message);
-        }
-    
-        return {
-            statusCode: 200,
-            headers,
-            body: JSON.stringify({ message: 'Email sent successfully', data }),
-        };
-
-    } catch (err) {
-        console.error('Function Error:', err);
-        return {
-            statusCode: 500,
-            headers,
-            body: JSON.stringify({ error: 'Failed to send email', details: err.message }),
-        };
-    }
-}; 
+`; 
