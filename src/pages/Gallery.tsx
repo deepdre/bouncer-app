@@ -132,13 +132,6 @@ const Gallery = () => {
                     alt={image.title}
                     className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-300"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black-900 via-transparent to-transparent opacity-60"></div>
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="bg-gold-500/10 backdrop-blur-sm rounded-lg p-3 border border-gold-500/20">
-                      <h3 className="font-semibold text-white mb-1">{image.title}</h3>
-                      <p className="text-gold-500 text-sm">{image.description}</p>
-                    </div>
-                  </div>
                 </div>
               </div>
             ))}
