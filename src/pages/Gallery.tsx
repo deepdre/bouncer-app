@@ -1,63 +1,85 @@
 import React, { useState } from 'react';
 import { Upload, X, Plus, Camera } from 'lucide-react';
+import img1 from '../assets/1.jpeg';
+import img2 from '../assets/2.jpeg';
+import img3 from '../assets/3.jpeg';
+import img4 from '../assets/4.jpeg';
+import img5 from '../assets/5.jpeg';
+import img6 from '../assets/6.jpeg';
+import img7 from '../assets/7.jpeg';
+
+interface GalleryImage {
+  id: number;
+  url: string;
+  title: string;
+  description: string;
+}
 
 const Gallery = () => {
-  const [images, setImages] = useState([
+  const [images, setImages] = useState<GalleryImage[]>([
     {
       id: 1,
-      url: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg',
+      url: img1,
       title: 'Concert Security',
       description: 'Professional security at major music event',
     },
     {
       id: 2,
-      url: 'https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg',
+      url: img2,
       title: 'VIP Protection',
       description: 'Close protection services for high-profile client',
     },
     {
       id: 3,
-      url: 'https://images.pexels.com/photos/8134848/pexels-photo-8134848.jpeg',
+      url: img3,
       title: 'Event Management',
       description: 'Crowd control at corporate event',
     },
     {
       id: 4,
-      url: 'https://images.pexels.com/photos/8566492/pexels-photo-8566492.jpeg',
+      url: img4,
       title: 'Training Session',
       description: 'Professional security training in progress',
     },
     {
       id: 5,
-      url: 'https://images.pexels.com/photos/416809/pexels-photo-416809.jpeg',
-      title: 'Venue Security',
-      description: 'Security team at premium venue',
+      url: img5,
+      title: 'Special Event',
+      description: 'Security for special VIP event',
     },
     {
       id: 6,
-      url: 'https://images.pexels.com/photos/2608517/pexels-photo-2608517.jpeg',
-      title: 'Team Briefing',
-      description: 'Pre-event security briefing',
+      url: img6,
+      title: 'Nightlife Security',
+      description: 'Bouncer services at nightlife venue',
+    },
+    {
+      id: 7,
+      url: img7,
+      title: 'Corporate Security',
+      description: 'Business event security team',
     },
   ]);
   
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [showUpload, setShowUpload] = useState(false);
 
-  const handleImageUpload = (event) => {
-    const files = Array.from(event.target.files);
-    
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(event.target.files || []);
     files.forEach(file => {
       const reader = new FileReader();
       reader.onload = (e) => {
-        const newImage = {
-          id: Date.now() + Math.random(),
-          url: e.target.result,
-          title: file.name.split('.')[0],
-          description: 'Newly uploaded image',
-        };
-        setImages(prev => [newImage, ...prev]);
-        setShowUpload(false);
+        const result = e.target?.result;
+        if (typeof result === 'string') {
+          const newImage: GalleryImage = {
+            id: Date.now() + Math.random(),
+            url: result,
+            title: file.name.split('.')[0],
+            description: 'Newly uploaded image',
+          };
+          setImages(prev => [newImage, ...prev]);
+          setShowUpload(false);
+        }
       };
       reader.readAsDataURL(file);
     });
@@ -108,7 +130,7 @@ const Gallery = () => {
                   <img
                     src={image.url}
                     alt={image.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black-900 via-transparent to-transparent opacity-60"></div>
                   <div className="absolute bottom-4 left-4 right-4">

@@ -1,28 +1,41 @@
 import React from 'react';
 import { Shield, Users, Clock, Award, ChevronRight, Star, Camera } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import logo from '../assets/logo.png';
+import img1 from '../assets/1.jpeg';
+import img2 from '../assets/2.jpeg';
+import img3 from '../assets/3.jpeg';
+import img4 from '../assets/4.jpeg';
+import img5 from '../assets/5.jpeg';
+import img6 from '../assets/6.jpeg';
+import img7 from '../assets/7.jpeg';
 
 const Home = () => {
   const features = [
     {
-      icon: Shield,
-      title: 'Professional Security',
-      description: 'Licensed and trained security professionals with years of experience.',
+      icon: logo,
+      title: 'Event Security Experts',
+      description: 'Trained teams for concerts, festivals, and public gatherings.',
     },
     {
-      icon: Clock,
-      title: '24/7 Availability',
-      description: 'Round-the-clock security services whenever you need protection.',
+      icon: logo,
+      title: 'Corporate Protection',
+    description: 'Discreet and reliable security for business operations and events.',
     },
     {
-      icon: Users,
-      title: 'Experienced Team',
-      description: 'Highly skilled bouncers and security personnel for all occasions.',
+      icon: logo,
+      title: 'Bouncer Services',
+    description: 'Strong, professional bouncers for clubs, bars, and nightlife venues.',
     },
     {
-      icon: Award,
-      title: 'Certified Service',
-      description: 'Fully licensed and insured security services you can trust.',
+      icon: logo,
+      title: '24/7 Bodyguard Service',
+    description: 'Personal protection available anytime, anywhere.',
+    },
+    {
+      icon: logo,
+      title: 'Special Deployments',
+    description: 'Custom security setups for VIPs, high-risk, or high-profile events.',
     },
   ];
 
@@ -50,28 +63,29 @@ const Home = () => {
   const galleryImages = [
     {
       id: 1,
-      url: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg',
+      url: img1,
       title: 'Concert Security',
       description: 'Professional security at major music event',
     },
     {
       id: 2,
-      url: 'https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg',
+      url: img2,
       title: 'VIP Protection',
       description: 'Close protection services for high-profile client',
     },
     {
       id: 3,
-      url: 'https://images.pexels.com/photos/8134848/pexels-photo-8134848.jpeg',
+      url: img3,
       title: 'Event Management',
       description: 'Crowd control at corporate event',
     },
     {
       id: 4,
-      url: 'https://images.pexels.com/photos/8566492/pexels-photo-8566492.jpeg',
+      url: img4,
       title: 'Training Session',
       description: 'Professional security training in progress',
     },
+    
   ];
 
   return (
@@ -84,8 +98,8 @@ const Home = () => {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="animate-fade-in">
             <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-7xl text-white mb-6 leading-tight">
-              Professional
-              <span className="text-gold-500 block">Security Solutions</span>
+              Singh Bouncer &
+              <span className="text-gold-500 block">Security Service</span>
             </h1>
             <p className="text-xl sm:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
               Expert bouncer and security services for events, venues, and personal protection. 
@@ -115,24 +129,28 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-slide-up">
             <h2 className="font-display font-bold text-3xl lg:text-5xl text-white mb-4">
-              Why Choose <span className="text-gold-500">Singh Security</span>
+              Why Choose <span className="text-gold-500">Singh Bouncer & Security Service</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Professional security services backed by experience, training, and commitment to excellence.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="bg-black-900 p-8 rounded-xl border border-gold-500/20 hover:border-gold-500/40 transition-all duration-300 transform hover:scale-105 group"
+                className="bg-black-900 p-6 rounded-xl border border-gold-500/20 hover:border-gold-500/40 transition-all duration-300 transform hover:scale-105 group flex flex-col h-full"
               >
-                <div className="bg-gold-500 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-gold-600 transition-colors">
-                  <feature.icon className="h-8 w-8 text-black-900" />
+                <div className="flex items-center justify-center mb-4">
+                  <img 
+                    src={feature.icon} 
+                    alt="Singh Security Logo" 
+                    className="h-14 w-14 object-contain"
+                  />
                 </div>
-                <h3 className="font-display font-semibold text-xl text-white mb-4">{feature.title}</h3>
-                <p className="text-gray-300 leading-relaxed">{feature.description}</p>
+                <h3 className="font-display font-semibold text-lg text-white mb-3 flex-shrink-0 min-h-[56px] flex items-start">{feature.title}</h3>
+                <p className="text-gray-300 leading-relaxed text-sm flex-grow">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -161,7 +179,7 @@ const Home = () => {
                   <img
                     src={image.url}
                     alt={image.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black-900 via-transparent to-transparent opacity-60"></div>
                   <div className="absolute bottom-4 left-4 right-4">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Shield, Menu, X } from 'lucide-react';
+import { Shield, Menu, X, Mail, Instagram } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,6 +25,21 @@ const Navbar = () => {
     { name: 'Contact', path: '/contact' },
   ];
 
+  const socialLinks = [
+    {
+      name: 'Email',
+      icon: Mail,
+      href: 'mailto:singhbouncersecure24service@gmail.com',
+      tooltip: 'singhbouncersecure24service@gmail.com'
+    },
+    {
+      name: 'Instagram',
+      icon: Instagram,
+      href: 'https://www.instagram.com/singhbouncersecurityservice',
+      tooltip: '@singhbouncersecurityservice'
+    }
+  ];
+
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
       scrolled ? 'bg-black-900/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
@@ -32,14 +48,12 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="bg-gold-500 p-2 rounded-lg group-hover:bg-gold-600 transition-colors">
-              <Shield className="h-6 w-6 text-black-900" />
-            </div>
+            <img src={logo} alt="Singh Security Logo" className="h-14 w-14 object-contain" />
             <div>
               <h1 className="font-display font-bold text-lg text-white group-hover:text-gold-500 transition-colors">
-                Singh Security
+                Singh Bouncer & Security Service
               </h1>
-              <p className="text-xs text-gold-500 font-medium">Bouncer & Security Service</p>
+              <p className="text-xs text-gold-500 font-medium">Your safety, our priority</p>
             </div>
           </Link>
 
@@ -59,6 +73,25 @@ const Navbar = () => {
                 }`}></span>
               </Link>
             ))}
+            
+            {/* Social Links */}
+            <div className="flex items-center space-x-4 ml-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 text-white hover:text-gold-500 hover:bg-black-800 rounded-lg transition-all duration-200 group relative"
+                  title={social.tooltip}
+                >
+                  <social.icon className="h-5 w-5" />
+                  <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-black-900 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                    {social.tooltip}
+                  </span>
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Mobile menu button */}
@@ -86,6 +119,24 @@ const Navbar = () => {
                   {item.name}
                 </Link>
               ))}
+              
+              {/* Mobile Social Links */}
+              <div className="border-t border-gray-700 pt-3 mt-3">
+                <div className="flex space-x-4 px-3">
+                  {socialLinks.map((social) => (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-2 text-white hover:text-gold-500 transition-colors"
+                    >
+                      <social.icon className="h-5 w-5" />
+                      <span className="text-sm">{social.name}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         )}

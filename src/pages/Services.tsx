@@ -2,37 +2,99 @@ import React from 'react';
 import { Shield, Users, Clock, Star, ChevronRight, UserCheck, Building, Music } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+// const Services = () => {
+//   const services = [
+//     {
+//       icon: Music,
+//       title: 'Event Security Services',
+//       description: 'Professional security for concerts, festivals, and private parties.',
+//       features: ['Crowd Control', 'Access Management', 'VIP Protection', 'Emergency Response'],
+//       image: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg',
+//     },
+//     {
+//       icon: UserCheck,
+//       title: 'Personal Protection',
+//       description: 'Discreet personal security services for individuals and families.',
+//       features: ['Close Protection', 'Threat Assessment', '24/7 Availability', 'Risk Management'],
+//       image: 'https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg',
+//     },
+//     {
+//       icon: Building,
+//       title: 'Venue Security',
+//       description: 'Comprehensive security solutions for bars, clubs, restaurants, and venues.',
+//       features: ['Door Security', 'Conflict Resolution', 'ID Verification', 'Incident Management'],
+//       image: 'https://images.pexels.com/photos/8134848/pexels-photo-8134848.jpeg',
+//     },
+//     {
+//       icon: Users,
+//       title: 'Corporate Security',
+//       description: 'Professional security services for businesses and corporate events.',
+//       features: ['Executive Protection', 'Asset Security', 'Event Management', 'Risk Assessment'],
+//       image: 'https://images.pexels.com/photos/8566492/pexels-photo-8566492.jpeg',
+//     },
+//   ];
 const Services = () => {
-  const services = [
-    {
-      icon: Music,
-      title: 'Event Security',
-      description: 'Professional security for concerts, festivals, corporate events, and private parties.',
-      features: ['Crowd Control', 'Access Management', 'VIP Protection', 'Emergency Response'],
-      image: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg',
-    },
-    {
-      icon: UserCheck,
-      title: 'Personal Protection',
-      description: 'Discreet personal security services for individuals and families.',
-      features: ['Close Protection', 'Threat Assessment', '24/7 Availability', 'Risk Management'],
-      image: 'https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg',
-    },
-    {
-      icon: Building,
-      title: 'Venue Security',
-      description: 'Comprehensive security solutions for bars, clubs, restaurants, and venues.',
-      features: ['Door Security', 'Conflict Resolution', 'ID Verification', 'Incident Management'],
-      image: 'https://images.pexels.com/photos/8134848/pexels-photo-8134848.jpeg',
-    },
-    {
-      icon: Users,
-      title: 'Corporate Security',
-      description: 'Professional security services for businesses and corporate events.',
-      features: ['Executive Protection', 'Asset Security', 'Event Management', 'Risk Assessment'],
-      image: 'https://images.pexels.com/photos/8566492/pexels-photo-8566492.jpeg',
-    },
-  ];
+const services = [
+  {
+    icon: Music, // Replace with relevant icon component
+    title: 'Event Security Services',
+    description: 'Expert security management for concerts, festivals, and private events to ensure a safe and controlled environment.',
+    features: [
+      'Crowd Management',
+      'Entry & Exit Control',
+      'VIP Escort & Protection',
+      'Emergency Response Planning'
+    ],
+    image: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg',
+  },
+  {
+    icon: Users, // Replace with relevant icon component
+    title: 'Corporate Security',
+    description: 'Tailored security solutions for businesses, executives, and corporate functions to protect assets and personnel.',
+    features: [
+      'Executive Protection',
+      'Workplace Surveillance',
+      'Access Control Systems',
+      'Threat & Risk Analysis'
+    ],
+    image: 'https://images.pexels.com/photos/8566492/pexels-photo-8566492.jpeg',
+  },
+  {
+    icon: Shield, // Replace with a "shield" or similar security icon
+    title: 'Bouncer Services',
+    description: 'Trained and reliable bouncers for clubs, bars, and events to maintain order and handle conflicts professionally.',
+    features: [
+      'Entrance Screening',
+      'Conflict Resolution',
+      'Crowd De-escalation',
+      'Emergency Support'
+    ],
+    image: 'https://images.pexels.com/photos/8134848/pexels-photo-8134848.jpeg',
+  },
+  {
+    icon: UserCheck, // Replace with relevant icon component
+    title: 'Personal Bodyguard Service',
+    description: 'Discreet and highly trained personal bodyguards for individuals, families, and public figures.',
+    features: [
+      'Close Protection',
+      '24/7 Security Detail',
+      'Travel Escort',
+      'Threat Prevention'
+    ],
+    image: 'https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg',
+  },
+  {
+    icon: Star, // Replace with a "star" or special deployment icon
+    title: 'Special Event Deployment',
+    description: 'Customized security teams for high-profile or sensitive events requiring specialized attention.',
+    features: [
+      'Custom Security Planning',
+      'Election Security',
+      'Press Conference Security'
+    ],
+    image: 'https://images.pexels.com/photos/1466335/pexels-photo-1466335.jpeg',
+  },
+];
 
   const additionalServices = [
     'Mobile Patrol Services',

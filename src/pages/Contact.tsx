@@ -117,19 +117,19 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Phone',
-      info: '+1 (555) 123-4567',
-      action: 'tel:+15551234567',
+      info: '+91 7289918292',
+      action: 'tel:+917289918292',
     },
     {
       icon: Mail,
       title: 'Email',
-      info: 'deepdre223@gmail.com',
-      action: 'mailto:deepdre223@gmail.com',
+      info: 'singhbouncersecurity24service@gmail.com',
+      action: 'mailto:singhbouncersecurity24service@gmail.com',
     },
     {
       icon: MapPin,
       title: 'Service Area',
-      info: 'Available Nationwide',
+      info: 'Available in Delhi NCR',
       action: null,
     },
     {
@@ -183,7 +183,7 @@ const Contact = () => {
                 {contact.action ? (
                   <a
                     href={contact.action}
-                    className="text-gold-500 hover:text-gold-400 transition-colors font-medium"
+                    className="text-gold-500 hover:text-gold-400 transition-colors font-medium break-words whitespace-normal"
                   >
                     {contact.info}
                   </a>
@@ -368,10 +368,10 @@ const Contact = () => {
               className="bg-black-900 hover:bg-black-800 text-gold-500 font-bold px-8 py-4 rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center space-x-2"
             >
               <Phone className="h-5 w-5" />
-              <span>Call Now: (555) 123-4567</span>
+              <span>Call Now: +91 7289918292</span>
             </a>
             <a
-              href="mailto:deepdre223@gmail.com"
+              href="mailto:singhbouncersecurity24service@gmail.com"
               className="border-2 border-black-900 text-black-900 hover:bg-black-900 hover:text-gold-500 font-semibold px-8 py-4 rounded-lg transition-all duration-200 transform hover:scale-105"
             >
               Email Emergency

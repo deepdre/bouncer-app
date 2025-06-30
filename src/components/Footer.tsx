@@ -1,5 +1,6 @@
 import React from 'react';
 import { Shield, Phone, Mail, MapPin, Clock } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 const Footer = () => {
   return (
@@ -9,9 +10,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="bg-gold-500 p-2 rounded-lg">
-                <Shield className="h-6 w-6 text-black-900" />
-              </div>
+              <img src={logo} alt="Singh Security Logo" className="h-14 w-14 object-contain" />
               <div>
                 <h3 className="font-display font-bold text-lg text-white">Singh Security</h3>
                 <p className="text-sm text-gold-500 font-medium">Bouncer & Security Service</p>
@@ -61,15 +60,15 @@ const Footer = () => {
             <div className="space-y-3 text-sm">
               <div className="flex items-center space-x-3">
                 <Phone className="h-4 w-4 text-gold-500" />
-                <span className="text-gray-300">+1 (555) 123-4567</span>
+                <span className="text-gray-300">+91 7289918292</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 text-gold-500" />
-                <span className="text-gray-300">deepdre223@gmail.com</span>
+                <span className="text-gray-300">singhbouncersecurity24service@gmail.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-4 w-4 text-gold-500" />
-                <span className="text-gray-300">Available Nationwide</span>
+                <span className="text-gray-300">Available in Delhi NCR</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Clock className="h-4 w-4 text-gold-500" />
@@ -82,8 +81,8 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-gold-500/20 mt-8 pt-8 text-center">
           <p className="text-gray-400 text-sm">
-            © 2024 Singh Bouncer & Security Service. All rights reserved. | 
-            <span className="text-gold-500"> Professional Security Solutions</span>
+            © 2024 Singh Bouncer & Security Service. All rights reserved.
+            
           </p>
         </div>
       </div>
