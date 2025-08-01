@@ -33,7 +33,7 @@ const JoinUs = () => {
         },
         body: JSON.stringify({
           from: 'onboarding@resend.dev',
-          to: ['deepdre223@gmail.com'],
+          to: ['singhbouncersecure24service@gmail.com'],
           subject: 'New Team Application - Singh Security',
           emailType: 'job-application',
           formData: formData,
@@ -326,7 +326,7 @@ const JoinUs = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="mailto:deepdre223@gmail.com"
+              href="mailto:singhbouncersecure24service@gmail.com"
               className="bg-black-900 hover:bg-black-800 text-gold-500 font-semibold px-8 py-4 rounded-lg transition-all duration-200 transform hover:scale-105"
             >
               Email Us

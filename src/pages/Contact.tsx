@@ -68,7 +68,7 @@ const Contact = () => {
         },
         body: JSON.stringify({
           from: 'onboarding@resend.dev',
-          to: ['deepdre223@gmail.com'],
+          to: ['singhbouncersecure24service@gmail.com'],
           subject: 'New Service Request - Singh Security',
           emailType: 'service-request',
           formData: {
@@ -123,8 +123,8 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email',
-      info: 'singhbouncersecurity24service@gmail.com',
-      action: 'mailto:singhbouncersecurity24service@gmail.com',
+      info: 'singhbouncersecure24service@gmail.com',
+      action: 'mailto:singhbouncersecure24service@gmail.com',
     },
     {
       icon: MapPin,
@@ -371,7 +371,7 @@ const Contact = () => {
               <span>Call Now: +91 7289918292</span>
             </a>
             <a
-              href="mailto:singhbouncersecurity24service@gmail.com"
+              href="mailto:singhbouncersecure24service@gmail.com"
               className="border-2 border-black-900 text-black-900 hover:bg-black-900 hover:text-gold-500 font-semibold px-8 py-4 rounded-lg transition-all duration-200 transform hover:scale-105"
             >
               Email Emergency
